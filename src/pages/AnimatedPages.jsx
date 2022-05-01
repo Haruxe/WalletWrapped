@@ -12,7 +12,6 @@ function AnimatedPages() {
       <AnimatePresence>
         <Routes location={location} key={location.pathname}>
             <Route path='/' element={<Home />} />
-            <Route path='/about' element={<About />} />
             <Route path='/stats' element={<Stats />} />
         </Routes>
       </AnimatePresence>

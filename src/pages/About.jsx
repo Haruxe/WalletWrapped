@@ -1,14 +1,21 @@
 import React from 'react'
+import {motion} from 'framer-motion';
 
 function About() {
   return (
-    <div className='bg-[#000003] h-screen'>
-        <div>
-            <h1 className='text-white text-2xl text-center font-thin font-JosefinSans drop-shadow-2xl'>
+    <motion.div className='h-screen flex'>
+        <div className='text-white text-4xl font-thin text-left font-JosefinSans 
+        mt-20 flex flex-col justify-center ml-10'
+        >
+            <h1>
                 ABOUT
             </h1>
+            <p className='mt-10 w-[50%]'>
+                Enter your Ethereum wallet adress or connect your MetaMask wallet to see some stats about
+                your wallet this year!
+            </p>
         </div>
-    </div>
+    </motion.div>
   )
 }
 

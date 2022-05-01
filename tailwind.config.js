@@ -7,7 +7,7 @@ module.exports = {
       'JosefinSans': ['sans-serif'],
     },
     animation: {
-      'bounce-slow': 'bounce 3s linear infinite',
+      'bounce-slow': 'bounce 3s linear infinite ',
     },
     extend: {},
   },
