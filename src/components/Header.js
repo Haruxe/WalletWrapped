@@ -40,7 +40,7 @@ function Header() {
         .catch(err => console.error(err));
         if (IsValid(result))
         {
-            navigate('/stats/' + finalAddress);
+            navigate('/stats/normal/' + finalAddress);
         }
     }
 
