@@ -14,8 +14,8 @@ function Header() {
     }
     let [invalidAddress, setInvalidAddress] = useState(false);
 
-    function IsValid(_result, _address){
-        if (_result.result > 0){
+    function IsValid(_result){
+        if (_result.result.length > 0){
             return true;
         } else {
             setInvalidAddress(true);
@@ -38,6 +38,7 @@ function Header() {
             return response
         })
         .catch(err => console.error(err));
+        
         if (IsValid(result))
         {
             navigate('/stats/normal/' + finalAddress);
@@ -53,11 +54,14 @@ function Header() {
         <div>
             <motion.div className='text-white text-8xl text-center font-thin font-JosefinSans drop-shadow-2xl' >
                 <h1>
-                    YOUR 2022 WALLET,
+                    YOUR WALLET,
                 </h1>
                 <h2 className='animate-charcter mt-4 font-thin'>
                     WRAPPED
                 </h2>
+                <p className='text-4xl'>
+                    Lets see your wallet's stats!
+                </p>
             </motion.div>
         </div>
         <div className='mt-20 items-center justify-center'>

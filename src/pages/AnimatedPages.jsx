@@ -1,9 +1,9 @@
 import React from 'react';
 import { useLocation, Routes, Route } from 'react-router-dom';
 import {AnimatePresence} from 'framer-motion';
-import Home from './Home.jsx';
-import Stats from './Stats.jsx';
-import Stats2 from './Stats2.jsx';
+import Home from './Home.tsx';
+import Stats from './Stats.tsx';
+import Stats2 from './Stats2.tsx';
 
 
 function AnimatedPages() {

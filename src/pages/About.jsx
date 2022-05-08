@@ -11,8 +11,8 @@ function About() {
                 ABOUT
             </h1>
             <p className='mt-10 w-[50%]'>
-                Enter your Ethereum wallet adress or connect your MetaMask wallet to see some stats about
-                your wallet this year!
+                This is a simple little website to see what kind of 
+                activity is on your Ethereum wallet, like your NFT
             </p>
         </div>
     </motion.div>
