@@ -3,19 +3,20 @@ import React, { useState } from 'react'
 import {motion} from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import {ethers} from 'ethers';
+import Footer from './Footer';
 
 
 function Header() {
     let navigate = useNavigate();
     function AddressInput(){
         return(
-                <input className='rounded-sm h-[5rem] w-[40rem] p-3 text-center font-JosefinSans mx-auto text-5xl font-thin mt-5' placeholder='Enter ENS or address' id='addressSubmit' />
+                <input className='rounded-sm w-full p-3 lg:text-5xl text-center monoSpace mx-auto text-[3vw] font-thin mt-5' placeholder='Enter ENS/Address' id='addressSubmit' />
         );
     }
     let [invalidAddress, setInvalidAddress] = useState(false);
 
     function IsValid(_result){
-        if (_result.result.length > 0){
+        if (_result.result > 0){
             return true;
         } else {
             setInvalidAddress(true);
@@ -28,8 +29,8 @@ function Header() {
         const address = document.getElementById('addressSubmit').value;
         let finalAddress = address;
 
-        if (address.length < 19){
-            finalAddress = await customHttpProvider.resolveName(address);
+        if (address.length < 19 && address.length > 0){
+            finalAddress = await customHttpProvider.resolveName(address.toLowerCase());
         }
         const result = await fetch('https://api.etherscan.io/api?module=account&action=balance&address=' + finalAddress + 
         '&tag=latest&apikey=B3I77K3XUMYN91UAGMVK166RRBME8QMRP7')
@@ -41,50 +42,56 @@ function Header() {
         
         if (IsValid(result))
         {
-            navigate('/stats/normal/' + finalAddress);
+            navigate('/stats/' + finalAddress);
         }
     }
 
   return (
-<div className='flex flex-col'>
-    <motion.div className='grid h-screen content-center justify-center'
+<div className='flex flex-col lg:w-[1200px] w-full justify-center mx-auto'>
+    <motion.div className='flex flex-col mt-[18rem]'
     initial={{scale: 0, opacity: 0}}
     animate={{scale: 1, opacity: 1}}
     transition={{duration: 1.5, type: 'spring'}}>
-        <div>
-            <motion.div className='text-white text-8xl text-center font-thin font-JosefinSans drop-shadow-2xl' >
+        <div className='text-white text-center monoSpace drop-shadow-2xl'>
+            <div className='mx-auto lg:text-5xl text-[6vw] flex flex-col space-y-0 lg:space-y-5' >
                 <h1>
                     YOUR WALLET,
                 </h1>
-                <h2 className='animate-charcter mt-4 font-thin'>
+                <h2 className='animate-charcter text-[20vw] lg:text-[200px] mx-auto font-bold'>
                     WRAPPED
                 </h2>
-                <p className='text-4xl'>
-                    Lets see your wallet's stats!
+                <p className='mt-5 text-[4vw] lg:text-3xl'>
+                    I wonder how much gas you've spent 🤔
                 </p>
-            </motion.div>
+            </div>
         </div>
-        <div className='mt-20 items-center justify-center'>
-            <div className='bg-[#2f2f2f61] rounded-sm align-middle flex flex-col p-20 w-[70rem] mx-auto'>
+        <div className='mt-5 items-center justify-center flex flex-col'>
+            <div className='bg-[#2f2f2f61] rounded-sm align-middle flex flex-col p-8 mx-auto w-full'>
                 <AddressInput />
-                <motion.button className='h-[5rem] w-[12rem] text-3xl mx-auto bg-slate-100 mt-9 font-JosefinSans 
+                <motion.button className='p-5 text-[3vw] lg:text-3xl mx-auto bg-slate-100 mt-9 monoSpace
                 rounded-sm drop-shadow-2xl font-thin' 
                 onClick={ProcessAddress}
                 whileHover={{scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
                 >
                     <p>
                         LETS GO
                     </p>
                 </motion.button>
                 <motion.div>
-                <p className='font-JosefinSans text-xl text-red-600 font-thin animate-ping'>
+                <p className='monoSpace text-xl text-red-600 font-thin animate-ping'>
                     {invalidAddress ? 'INVALID ADDRESS' : ''}
                 </p>
                 </motion.div>
+                
             </div>
+            
         </div>
+        
     </motion.div>
+    <p className='mt-[12rem] text-xl lg:text-xl text-slate-200 mx-auto monoSpace leading-relaxed text-center'>
+                    Enter your Ethereum wallet address, and get statistics such as net profits, and sold/minted NFTs! This project is open sourced, feel free to contribute to the <a target='_blank' href='https://github.com/Haruxe/WalletWrapped' className='text-blue-400 text-4xl'>GitHub</a> repo!
+                </p>
+                <Footer />
 </div>
   )
 }
