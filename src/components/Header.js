@@ -34,10 +34,7 @@ function Header() {
     let finalAddress = address;
 
     if (address.length === 0) {
-      toast.error("Please enter an address or ENS name", {
-        position: "top-center",
-        autoClose: 5000,
-      });
+      toast.error("Please enter an address or ENS name");
       return;
     }
 
@@ -46,6 +43,11 @@ function Header() {
         address.toLowerCase()
       );
     }
+
+    toast.loading("Fetching stats for your wallet...", {
+      autoClose: false,
+      toastId: "loading",
+    });
     const result = await fetch(
       "https://api.etherscan.io/api?module=account&action=balance&address=" +
         finalAddress +
@@ -55,9 +57,14 @@ function Header() {
       .then((response) => {
         return response;
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        toast.dismiss("loading");
+        toast.error("Error while fetching data");
+        console.error(err);
+      });
 
     if (IsValid(result)) {
+      toast.dismiss("loading");
       navigate("/stats/" + finalAddress);
     }
   }
