@@ -37,8 +37,6 @@ function Header() {
       toast.error("Please enter an address or ENS name", {
         position: "top-center",
         autoClose: 5000,
-        hideProgressBar: true,
-        theme: "dark",
       });
       return;
     }

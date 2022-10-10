@@ -31,7 +31,7 @@ const analytics = getAnalytics(app);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <ToastContainer />
+    <ToastContainer hideProgressBar={true} theme={"dark"} />
     <App />
   </React.StrictMode>
 );
