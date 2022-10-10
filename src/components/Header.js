@@ -108,6 +108,7 @@ function Header() {
           target="_blank"
           href="https://github.com/Haruxe/WalletWrapped"
           className="text-blue-400 text-4xl"
+          rel="noreferrer"
         >
           GitHub
         </a>{" "}
