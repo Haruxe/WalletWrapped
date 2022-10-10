@@ -1,22 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
- 
-@layer components {
-    .navbarIcon {
-        @apply text-slate-200 
-        text-lg 
-        font-medium 
-        cursor-pointer
-    }
-    .monoSpace {
-      font-family: 'Space Mono', monospace;
-    }
+@font-face {
+  font-family: "Space-Mono";
+  src: url("../public/fonts/spacemono.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
 }
 
-.animate-charcter
-{
+@layer components {
+  .navbarIcon {
+    @apply text-slate-200 
+        text-lg 
+        font-medium 
+        cursor-pointer;
+  }
+  .monoSpace {
+    font-family: "Space-Mono", monospace;
+  }
+}
+
+.animate-charcter {
   background-image: linear-gradient(
     -225deg,
     #231557 0%,
@@ -28,7 +32,7 @@
   background-size: 200% auto;
   color: #fff;
   background-clip: text;
-  text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: textclip 6s linear infinite;
