@@ -1,8 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import { ToastContainer } from "react-toastify";
+import reportWebVitals from "./reportWebVitals";
+import "./index.css";
+import "react-toastify/dist/ReactToastify.css";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -19,17 +21,22 @@ const firebaseConfig = {
   storageBucket: "walletwrapped.appspot.com",
   messagingSenderId: "1087025382999",
   appId: "1:1087025382999:web:32fae987ac8540151bc512",
-  measurementId: "G-0TKJML71DT"
+  measurementId: "G-0TKJML71DT",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
+    <ToastContainer
+      hideProgressBar={true}
+      theme={"dark"}
+      position="top-center"
+      autoClose={5000}
+    />
     <App />
   </React.StrictMode>
 );
