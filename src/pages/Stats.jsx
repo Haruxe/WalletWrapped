@@ -8,8 +8,6 @@ import { Wolframlanguage } from "styled-icons/simple-icons";
 import { GasStation } from "styled-icons/remix-fill";
 import Footer from "../components/Footer";
 
-const { REACT_APP_ETHERSCAN_APIKEY, REACT_APP_MONEY_APIKEY } = process.env;
-
 function Stats() {
   debugger;
   let [spent, setSpent] = useState("-");
@@ -57,7 +55,7 @@ function Stats() {
       "https://api.etherscan.io/api?module=account&action=txlist&address=" +
         address +
         "&startblock=0&endblock=99999999&page=1&offset=10000&sort=desc&apikey=" +
-        REACT_APP_ETHERSCAN_APIKEY
+        process.env.REACT_APP_ETHERSCAN_APIKEY
     )
       .then((response) => response.json())
       .then((response) => {
@@ -68,7 +66,7 @@ function Stats() {
       "https://api.etherscan.io/api?module=account&action=txlistinternal&address=" +
         address +
         "&startblock=0&endblock=99999999&page=1&offset=10000&sort=desc&apikey=" +
-        REACT_APP_ETHERSCAN_APIKEY
+        process.env.REACT_APP_ETHERSCAN_APIKEY
     )
       .then((response) => response.json())
       .then((response) => {
@@ -79,7 +77,7 @@ function Stats() {
     //@dev fetch live ETH -> USD
     let ETHConversion = await fetch(
       "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD&api_key=" +
-        REACT_APP_MONEY_APIKEY
+        process.env.REACT_APP_MONEY_APIKEY
     )
       .then((response) => response.json())
       .then((response) => {
@@ -180,7 +178,7 @@ function Stats() {
       "https://api.etherscan.io/api?module=account&action=tokennfttx&address=" +
         address +
         "&startblock=0&endblock=99999999&page=1&offset=10000&sort=asc&apikey=" +
-        REACT_APP_ETHERSCAN_APIKEY
+        process.env.REACT_APP_ETHERSCAN_APIKEY
     )
       .then((response) => response.json())
       .then((response) => {
@@ -398,7 +396,7 @@ function Stats() {
     <div>
       <div
         className="h-full text-white monoSpace justify-center
-              drop-shadow-2xl mt-15 flex flex-col md:flex-row align-middle lg:text-2xl sm:text-xl"
+              drop-shadow-2xl mt-15 flex flex-col md:flex-row align-middle lg:text-lg text-md"
       >
         <div
           className="h-full
@@ -481,11 +479,11 @@ function Stats() {
                 </p>
               </div>
               <p className="text-center">
-                Have feedback? Submit an Issue or PR on this website's{" "}
+                Have feedback? Submit an Issue or PR on{" "}
                 <a
                   target="_blank"
                   href="https://github.com/Haruxe/WalletWrapped"
-                  className="text-blue-400 text-4xl"
+                  className="text-blue-400"
                   rel="noreferrer"
                 >
                   GitHub

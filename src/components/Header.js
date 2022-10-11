@@ -6,8 +6,6 @@ import { ethers } from "ethers";
 import Footer from "./Footer";
 import { toast } from "react-toastify";
 
-const { REACT_APP_ETHERSCAN_APIKEY, REACT_APP_INFURA_KEY } = process.env;
-
 function Header() {
   let navigate = useNavigate();
   function AddressInput() {
@@ -30,7 +28,8 @@ function Header() {
   }
 
   async function ProcessAddress() {
-    var url = "https://mainnet.infura.io/v3/" + REACT_APP_INFURA_KEY;
+    var url =
+      "https://mainnet.infura.io/v3/" + process.env.REACT_APP_INFURA_KEY;
     var customHttpProvider = new ethers.providers.JsonRpcProvider(url);
     const address = document.getElementById("addressSubmit").value;
     let finalAddress = address;
@@ -54,7 +53,7 @@ function Header() {
       "https://api.etherscan.io/api?module=account&action=balance&address=" +
         finalAddress +
         "&tag=latest&apikey=" +
-        REACT_APP_ETHERSCAN_APIKEY
+        process.env.REACT_APP_ETHERSCAN_APIKEY
     )
       .then((response) => response.json())
       .then((response) => {
@@ -83,7 +82,7 @@ function Header() {
         <div className="text-white text-center monoSpace drop-shadow-2xl my-10">
           <div className="mx-auto lg:text-5xl text-[6vw] flex flex-col space-y-0 lg:space-y-5">
             <h1>YOUR WALLET,</h1>
-            <h2 className="animate-charcter text-[16vw] lg:text-[160px] mx-auto font-bold font-mono tracking-wider">
+            <h2 className="animate-charcter text-[16vw] lg:text-[160px] mx-auto font-serif font-black tracking-wider">
               WRAPPED
             </h2>
             <p className="mt-5 text-lg lg:text-xl text-gray-400">
